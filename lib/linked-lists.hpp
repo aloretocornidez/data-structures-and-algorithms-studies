@@ -27,11 +27,15 @@ public:
   // insert node at index.
   void insertNodeAtIndex(int data, int index);
 
+  // Delete a node at index 
+  void deleteNodeAtIndex(int index);
+
   // Get a node in the list.
-  Node *getNodeAtIndex(unsigned int index);
+  Node *getNodeAtIndex(int index);
+
+  
 
   void printList();
-
   void printBackwards();
 
   // reverse the linked list.

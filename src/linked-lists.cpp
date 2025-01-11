@@ -1,7 +1,8 @@
 #include "../lib/linked-lists.hpp"
 #include <iostream>
 
-LinkedList::LinkedList() {
+LinkedList::LinkedList()
+{
   this->listSize = 0;
 
   this->head = new Node();
@@ -16,10 +17,12 @@ LinkedList::LinkedList() {
   this->tail->next = nullptr;
 }
 
-LinkedList::~LinkedList() {
+LinkedList::~LinkedList()
+{
   Node *temp = this->head->next;
 
-  for (int i = 0; i < this->listSize; i++) {
+  for (int i = 0; i < this->listSize; i++)
+  {
     Node *deleteMe = temp;
     temp = temp->next;
 
@@ -31,7 +34,8 @@ LinkedList::~LinkedList() {
 }
 
 // add data to the end of a list.
-void LinkedList::appendNode(int data) {
+void LinkedList::appendNode(int data)
+{
 
   // Get second to last node.
   Node *prev = this->tail->previous;
@@ -53,7 +57,8 @@ void LinkedList::appendNode(int data) {
 }
 
 // add data to the beginning of a list.
-void LinkedList::insertAtBeginning(int data) {
+void LinkedList::insertAtBeginning(int data)
+{
 
   // create new node
   Node *newNode = new Node;
@@ -72,18 +77,22 @@ void LinkedList::insertAtBeginning(int data) {
 }
 
 // insert node at index.
-void LinkedList::insertNodeAtIndex(int data, int index) {
+void LinkedList::insertNodeAtIndex(int data, int index)
+{
 
   // append to end of the list if entered index is larger than list size.
-  if (index >= (int)this->listSize) {
+  if (index >= (int)this->listSize)
+  {
     index = this->listSize;
   }
   // negative indexes add to elements from end of list.
-  else if (index < 0) {
+  else if (index < 0)
+  {
 
     index = this->listSize + index;
 
-    if (index < 0) {
+    if (index < 0)
+    {
       index = 0;
     }
   }
@@ -92,7 +101,8 @@ void LinkedList::insertNodeAtIndex(int data, int index) {
 
   // traverse list that many times.
   int i = 0;
-  while (i++ < index) {
+  while (i++ < index)
+  {
     tempPrev = tempPrev->next;
   }
 
@@ -112,16 +122,43 @@ void LinkedList::insertNodeAtIndex(int data, int index) {
   this->listSize++;
 }
 
+// Traverses to the node and then removes it from the list.
+void LinkedList::deleteNodeAtIndex(int index) {
+
+  Node* temp = getNodeAtIndex(index);
+
+  Node* prev = temp->previous;
+
+  prev->next = temp->next;
+  temp->next->previous = prev;
+
+  delete temp;
+
+}
 // Get a node in the list.
-LinkedList::Node *LinkedList::getNodeAtIndex(unsigned int index) {
+LinkedList::Node *LinkedList::getNodeAtIndex(int index)
+{
 
   // if list is empty.
-  if (this->listSize == 0) {
+  if (this->listSize == 0)
+  {
     return nullptr;
   }
-  // if index is greater than size of list.
-  if (index >= this->listSize) {
-    return nullptr;
+  // append to end of the list if entered index is larger than list size.
+  if (index >= (int)this->listSize)
+  {
+    index = this->listSize;
+  }
+  // negative indexes add to elements from end of list.
+  else if (index < 0)
+  {
+
+    index = this->listSize + index;
+
+    if (index < 0)
+    {
+      index = 0;
+    }
   }
 
   // set pointer to head.
@@ -129,19 +166,23 @@ LinkedList::Node *LinkedList::getNodeAtIndex(unsigned int index) {
 
   // traverse list until index is reached.
   unsigned int i = 0;
-  while (i++ < index) {
+  while (i++ < index)
+  {
     temp = temp->next;
   }
   return temp;
+
 }
 
-void LinkedList::printList() {
+void LinkedList::printList()
+{
 
   Node *temp = this->head;
 
   // std::cout << "List Size: " << this->listSize << std::endl;
 
-  while (temp->next != this->tail) {
+  while (temp->next != this->tail)
+  {
 
     // traverse list
     temp = temp->next;
@@ -150,21 +191,25 @@ void LinkedList::printList() {
     std::cout << temp->data;
 
     // Add comma while not at end of list.
-    if (temp->next != this->tail) {
+    if (temp->next != this->tail)
+    {
       std::cout << ", ";
     }
   }
   // add a new line at the end.
-  if (listSize > 0) {
+  if (listSize > 0)
+  {
     std::cout << std::endl;
   }
 }
 
-void LinkedList::printBackwards() {
+void LinkedList::printBackwards()
+{
 
   Node *temp = this->tail;
 
-  while (temp->previous != this->head) {
+  while (temp->previous != this->head)
+  {
 
     // traverse list
     temp = temp->previous;
@@ -173,17 +218,20 @@ void LinkedList::printBackwards() {
     std::cout << temp->data;
 
     // Add comma while not at end of list.
-    if (temp->previous != this->head) {
+    if (temp->previous != this->head)
+    {
       std::cout << ", ";
     }
   }
   // add a new line at the end.
-  if (listSize > 0) {
+  if (listSize > 0)
+  {
     std::cout << std::endl;
   }
 }
 // reverse the linked list.
-void LinkedList::reverseList() {
+void LinkedList::reverseList()
+{
 
   // create a temporary holder
   Node *newTail = this->head;
@@ -194,7 +242,8 @@ void LinkedList::reverseList() {
   temp = this->head;
 
   // traverse the list and reverse elements.
-  while (temp != nullptr) {
+  while (temp != nullptr)
+  {
     prev = temp;
     temp = temp->next;
 

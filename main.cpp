@@ -42,7 +42,10 @@ int main(int argc, char *argv[]) {
     std::cout << "Printing Reversed List" << std::endl;
     mySingleList->printList();
 
-    // std::cout << mySingleList->getNodeAtIndex(5)->data << std::endl;
+    // print the list
+    std::cout << "Removing Node" << std::endl;
+    mySingleList->deleteNodeAtIndex(3);
+    mySingleList->printList();
 
     delete mySingleList;
   }
