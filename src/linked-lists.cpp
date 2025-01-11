@@ -1,4 +1,5 @@
 #include "../lib/linked-lists.hpp"
+#include <iostream>
 
 LinkedList::LinkedList() {
   this->listSize = 0;
