@@ -21,12 +21,15 @@ LinkedList::~LinkedList()
 {
   Node *temp = this->head->next;
 
-  for (int i = 0; i < this->listSize; i++)
+  if (this->listSize > 0)
   {
-    Node *deleteMe = temp;
-    temp = temp->next;
+    for (int i = 0; i < this->listSize; i++)
+    {
+      Node *deleteMe = temp;
+      temp = temp->next;
 
-    delete deleteMe;
+      delete deleteMe;
+    }
   }
 
   delete this->head;
@@ -123,17 +126,17 @@ void LinkedList::insertNodeAtIndex(int data, int index)
 }
 
 // Traverses to the node and then removes it from the list.
-void LinkedList::deleteNodeAtIndex(int index) {
+void LinkedList::deleteNodeAtIndex(int index)
+{
 
-  Node* temp = getNodeAtIndex(index);
+  Node *temp = getNodeAtIndex(index);
 
-  Node* prev = temp->previous;
+  Node *prev = temp->previous;
 
   prev->next = temp->next;
   temp->next->previous = prev;
 
   delete temp;
-
 }
 // Get a node in the list.
 LinkedList::Node *LinkedList::getNodeAtIndex(int index)
@@ -171,7 +174,6 @@ LinkedList::Node *LinkedList::getNodeAtIndex(int index)
     temp = temp->next;
   }
   return temp;
-
 }
 
 void LinkedList::printList()

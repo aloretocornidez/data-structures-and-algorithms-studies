@@ -9,3 +9,4 @@ reference for myself at the ready.
 Listed are completed basic implementations of data structures:
 
 - Double Linked List
+- 
